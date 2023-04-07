@@ -10,7 +10,7 @@ const AvailableAppointments = ({selectedDate}) => {
         fetch('servicesSlot.json')
         .then(reponse=> reponse.json())
         .then(data=> setServicesSlot(data))
-    })
+    }, [])
     return (
         <section className='m-12'>
             <p className='text-center text-primary font-bold'> Available Appoinments on {format(selectedDate, 'PP') }</p>
@@ -22,13 +22,18 @@ const AvailableAppointments = ({selectedDate}) => {
                     key={slotDetails.id} 
                     slotDetails={slotDetails} 
                     setTreatment= {setTreatment}
+                    
                     >  </AppointmentDetails> )
                  
                 }
 
             </div>
             {   treatment &&
-            <BookingModal treatment={treatment}> 
+            <BookingModal 
+            
+            treatment={treatment}
+            selectedDate={selectedDate}
+            setTreatment={setTreatment}> 
             </BookingModal>
             }
             
